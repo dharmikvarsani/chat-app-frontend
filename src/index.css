@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@tailwind utilities;
+@plugin "daisyui";
+@plugin 'tailwind-scrollbar';
+
+@layer utilities {
+    .scrollbar-hide {
+      scrollbar-width: none; 
+      -ms-overflow-style: none;
+    }
+  
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none; 
+    }
+  }
