@@ -3,7 +3,7 @@ import { axiosInstnce } from '../lib/axios'
 import toast from 'react-hot-toast'
 import { io } from 'socket.io-client'
 
-const BASE_URL = 'http://localhost:5001'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export const userAuthStore = create((set, get) => ({
     authUser: null,
@@ -20,7 +20,7 @@ export const userAuthStore = create((set, get) => ({
             set({ authUser: res.data })
             get().connectSocket()
         } catch (error) {
-            console.log("error in checkauth store", error)
+            // console.log("error in checkauth store", error)
             set({ authUser: null })
         } finally {
             set({ isCheckingAuth: false })
@@ -36,7 +36,7 @@ export const userAuthStore = create((set, get) => ({
             get().connectSocket()
         } catch (error) {
             toast.error(error.response.data.message)
-            console.log('Error in signup data in store ', error)
+            // console.log('Error in signup data in store ', error)
         } finally {
             set({ isSigningUp: false })
         }
@@ -64,7 +64,7 @@ export const userAuthStore = create((set, get) => ({
             get().disconnectSocket()
         } catch (error) {
             toast.error(error.response.data.message)
-            console.log("error in logout store", error)
+            // console.log("error in logout store", error)
         }
     },
 
@@ -79,7 +79,7 @@ export const userAuthStore = create((set, get) => ({
                     : 'Profile image update successfully'
             )
         } catch (error) {
-            console.log('Error in update profile image store', error)
+            // console.log('Error in update profile image store', error)
             toast.error(error.response.data.message)
         } finally {
             set({ isUpdatingProfile: false })
